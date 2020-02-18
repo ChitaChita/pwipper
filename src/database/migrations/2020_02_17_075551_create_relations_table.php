@@ -6,26 +6,40 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateRelationsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        Schema::create('relations', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->timestamps();
-        });
-    }
+	/**
+	 * Run the migrations.
+	 *
+	 * @return void
+	 */
+	public function up()
+	{
+		Schema::create('relations', function (Blueprint $table) {
+            $table->unsignedInteger('user_id')->comment('ユーザID');
+			$table->unsignedInteger('follow_id')->comment('フォロー対象のユーザID');
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('relations');
-    }
+			$table->index('user_id');
+			$table->index('follow_id');
+
+			$table->foreign('user_id')
+				->references('id')
+				->on('users')
+				->onDelete('cascade')
+                ->onUpdate('cascade');
+
+            $table->unique([
+                'follow_id',
+                'user_id'
+            ]);
+		});
+	}
+
+	/**
+	 * Reverse the migrations.
+	 *
+	 * @return void
+	 */
+	public function down()
+	{
+		Schema::dropIfExists('relations');
+	}
 }
