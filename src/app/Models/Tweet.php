@@ -8,13 +8,21 @@ use Illuminate\Database\Eloquent\softDeletes;
 class Tweet extends Model
 {
 	use SoftDeletes;
-
+    protected $primaryKey = [
+        'user_id',
+        'message'
+    ];
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'text'
+        'message'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

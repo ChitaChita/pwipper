@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -17,7 +17,6 @@ class User extends Authenticatable
    */
   protected $fillable = [
     'name',
-    'email',
     'password',
     'screen_name',
     'profile',
@@ -33,12 +32,18 @@ class User extends Authenticatable
     'password', 'remember_token',
   ];
 
+  public function Tweets()
+	{
+		return $this->hasMany(Tweet::class);
+	}
+
+	public function Relations()
+	{
+		return $this->hasMany(Relation::class);
+	}
   /**
    * The attributes that should be cast to native types.
    *
-   * @var array
+   *
    */
-  protected $casts = [
-    'email_verified_at' => 'datetime',
-  ];
 }

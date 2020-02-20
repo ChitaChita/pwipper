@@ -16,4 +16,9 @@ class Relation extends Model
   ];
   public $timestamps = false;
   public $incrementing = false;
+
+  public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
