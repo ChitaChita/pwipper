@@ -14,8 +14,8 @@ class CreateRelationsTable extends Migration
 	public function up()
 	{
 		Schema::create('relations', function (Blueprint $table) {
-            $table->unsignedInteger('user_id')->comment('ユーザID');
-			$table->unsignedInteger('follow_id')->comment('フォロー対象のユーザID');
+            $table->bigInteger('user_id')->unsigned()->comment('ユーザID');
+			$table->bigInteger('follow_id')->unsigned()->comment('フォロー対象のユーザID');
 
 			$table->index('user_id');
 			$table->index('follow_id');

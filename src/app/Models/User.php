@@ -19,7 +19,7 @@ class User extends Authenticatable
     'name',
     'password',
     'screen_name',
-    'profile',
+    'profile_stmt',
     'icon_image'
   ];
 
