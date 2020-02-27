@@ -11,6 +11,8 @@ class RelationsTableSeeder extends Seeder
    */
   public function run()
   {
+    DB::table('relations')->truncate();
+
     DB::table('relations')->insert(
       [
         'user_id'    => 1,

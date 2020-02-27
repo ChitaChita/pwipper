@@ -11,6 +11,8 @@ class TweetsTableSeeder extends Seeder
    */
   public function run()
   {
+    DB::table('tweets')->truncate();
+
     for ($i = 1; $i <= 5; $i++) {
       DB::table('tweets')->insert([
         'user_id'    => $i,
